@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}- Home{% endblock %}
+
+{% block content %}
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to University Database</h1>
+            <p class="lead">This application allows you to browse information about students, professors, and departments.</p>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Students</h5>
+                            <p class="card-text">View a list of all students currently enrolled at the university.</p>
+                            <a href="/students" class="btn btn-primary">View Students</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Professors</h5>
+                            <p class="card-text">View a list of all professors teaching at the university.</p>
+                            <a href="/professors" class="btn btn-primary">View Professors</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Departments</h5>
+                            <p class="card-text">View a list of all departments at the university.</p>
+                            <a href="/departments" class="btn btn-primary">View Departments</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
