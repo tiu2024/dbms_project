@@ -26,11 +26,29 @@ def select_sorovi(sorov):
     connection.close()
     return results
 
+
+def insert_sorov(sorov):
+    connection = None
+    natija = False
+
+    try:
+        connection = boglanish()
+        cursor = connection.cursor()
+
+        cursor.execute(sorov)
+        connection.commit()
+        cursor.close()
+        natija = True
+    except (Exception, psycopg2.DatabaseError) as e:
+        print(f"MB ga ma'lumot kiritishda muammo: {e}")
+
+    connection.close()
+    return natija
+
 def barcha_talabalar():
     sorov = """
     SELECT student_id, first_name, last_name, email, major, status
     FROM Student
-    ORDER BY last_name, first_name
     """
     
     natija = select_sorovi(sorov)
@@ -55,9 +73,20 @@ def barcha_kafedralar():
     natija = select_sorovi(sorov)
     return natija
 
+def talaba_qoshish(first_name, last_name, email, phone, major, ed,status, dob=None, address=None):
+    query = f"""
+    INSERT INTO Student 
+    (first_name, last_name, email, phone, major, enrollment_date, status, date_of_birth, address) 
+    VALUES ('{first_name}', '{last_name}', '{email}', '{phone}', '{major}', '{ed}', '{status}', '{dob}', '{address}')
+    """
+
+    return insert_sorov(query)
+
 def main():
-    talabalar = barcha_talabalar()
-    print(talabalar)
+    if talaba_qoshish("Sardor", "Obidov", "s.xxx@gmail.com", "123456789", "ATDT", "2012-12-12","Ikkichi", "2012-12-12", "Namangan"):
+        print("Yaratildi")
+    else:
+        print("Xato!")
 
 if __name__ == "__main__":
     main()
